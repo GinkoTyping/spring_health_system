@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HelloController {
 
-    @RequestMapping("/")
-    public String index(Model model) {
-        model.addAttribute("name", "World");
+    @GetMapping("/")
+    public String home(Model model) {
+        model.addAttribute("message", "This is a message from the controller.");
+        return "home";
+    }
+    @GetMapping("/login")
+    public String login(Model model) {
         model.addAttribute("message", "This is a message from the controller.");
         return "login";
     }

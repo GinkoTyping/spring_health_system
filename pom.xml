@@ -62,8 +62,21 @@
             <version>3.0.3</version>
             <scope>test</scope>
         </dependency>
-    </dependencies>
 
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+<!--            <version>10.1.30</version>-->
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+    <packaging>jar</packaging>
     <build>
         <plugins>
             <plugin>
