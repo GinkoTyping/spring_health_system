@@ -9,5 +9,8 @@ public class User {
     private String email;
     private String password;
     private Timestamp createdAt;
-    // getters and setters
+
+    public boolean checkPassword(String input) {
+        return this.password.equals(input);
+    }
 }

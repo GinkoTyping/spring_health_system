@@ -1,7 +1,7 @@
 -- 插入一些示例用户（可选）
 INSERT INTO users (username, email, password)
-VALUES ('alice', 'alice@example.com', 'hashed_password_for_alice'),
-       ('bob', 'bob@example.com', 'hashed_password_for_bob');
+VALUES ('1', '1-email', '1'),
+       ('1', '1-email', '1');
 
 -- 插入一些示例数据种类（可选）
 INSERT INTO health_metrics_types (name, description, unit, data_type)
