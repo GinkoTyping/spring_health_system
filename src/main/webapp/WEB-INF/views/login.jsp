@@ -8,7 +8,7 @@
 <h2>天天安康欢迎您! </h2>
 
 
-<form action="login" method="post">
+<form action="/login" method="post">
     <label for="username">账户:</label>
     <input class="inputs" type="text" id="username" name="username" required>
     <br>

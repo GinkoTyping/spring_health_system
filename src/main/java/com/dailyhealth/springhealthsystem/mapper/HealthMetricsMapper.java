@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 public interface HealthMetricsMapper {
-    @Insert("INSERT INTO health_metrics(user_id, metric_type_id, value) VALUES(#{userId}, #{metricTypeId}, #{value})")
+    @Insert("INSERT INTO health_metrics(user_id, metric_type_id, metric_type_name, value) VALUES(#{userId}, #{metricTypeId}, #{metricTypeName}, #{value})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     int insertHealthMetrics(HealthMetrics healthMetrics);
 
@@ -24,6 +24,6 @@ public interface HealthMetricsMapper {
     @Select("SELECT * FROM health_metrics")
     List<HealthMetrics> getHealthMetricsList();
 
-    @Update("UPDATE health_metrics SET metric_type_id = ${metricTypeId}, value = ${value} WHERE id = ${id}")
+    @Update("UPDATE health_metrics SET metric_type_id = #{metricTypeId}, metric_type_name = #{metricTypeName}, value = #{value} WHERE id = #{id}")
     int updateHealthMetricsById(HealthMetrics healthMetrics);
 }

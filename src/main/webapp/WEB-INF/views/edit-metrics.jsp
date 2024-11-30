@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +6,7 @@
 </head>
 <body>
 <h2>修改数据</h2>
-<form action="health-metrics/update/{id}" method="post">
+<form action="/health-metrics/update/${id}" method="post">
     <label for="metricTypeId">数据类型ID:</label>
     <input class="inputs" type="text" id="metricTypeId" name="metricTypeId" required>
     <br>
@@ -13,6 +14,7 @@
     <input class="inputs" type="text" id="value" name="value" required>
     <br>
     <input id="loginBtn" type="submit">
+    <p>${message}</p>
 </form>
 </body>
 
