@@ -1,22 +1,18 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>天天安康</title>
 </head>
 <body>
-<h2>天天安康欢迎您! </h2>
-
-
-<form action="login" method="post">
-    <label for="username">账户:</label>
-    <input class="inputs" type="text" id="username" name="username" required>
+<h2>修改数据</h2>
+<form action="health-metrics/update/{id}" method="post">
+    <label for="metricTypeId">数据类型ID:</label>
+    <input class="inputs" type="text" id="metricTypeId" name="metricTypeId" required>
     <br>
-    <label for="password">密码:</label>
-    <input class="inputs" type="password" id="password" name="password" required>
+    <label for="value">数值:</label>
+    <input class="inputs" type="text" id="value" name="value" required>
     <br>
-    <input id="loginBtn" type="submit" value="登录">
-    <p>${message}</p>
+    <input id="loginBtn" type="submit">
 </form>
 </body>
 

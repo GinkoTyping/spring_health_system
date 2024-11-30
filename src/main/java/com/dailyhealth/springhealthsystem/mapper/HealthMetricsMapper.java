@@ -1,14 +1,29 @@
 package com.dailyhealth.springhealthsystem.mapper;
 
 import com.dailyhealth.springhealthsystem.model.HealthMetrics;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
-public interface HealthMetricsMapper {
-    @Insert("INSERT INTO health_metrics(user_id, metric_type_id, value, recorded_at) VALUES(#{userId}, #{metricTypeId}, #{value}, #{recordedAt})")
-    @Options(useGeneratedKeys = true, keyProperty = "id")
-    void insertHealthMetrics(HealthMetrics healthMetrics);
+import org.apache.ibatis.annotations.*;
 
-    @Select("SELECT * FROM health_metrics WHERE id = #{id}")
-    HealthMetrics getHealthMetricsById(int id);
+import java.util.List;
+
+public interface HealthMetricsMapper {
+    @Insert("INSERT INTO health_metrics(user_id, metric_type_id, value) VALUES(#{userId}, #{metricTypeId}, #{value})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    int insertHealthMetrics(HealthMetrics healthMetrics);
+
+    @Select("SELECT * FROM health_metrics WHERE user_id = #{userId}")
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "userId", column = "user_id"),
+            @Result(property = "metricTypeId", column = "metric_type_id"),
+            @Result(property = "metricTypeName", column = "metric_type_name"),
+            @Result(property = "value", column = "value"),
+            @Result(property = "recordedAt", column = "recorded_at")
+    })
+    List<HealthMetrics> getHealthMetricsByUserId(int userId);
+
+    @Select("SELECT * FROM health_metrics")
+    List<HealthMetrics> getHealthMetricsList();
+
+    @Update("UPDATE health_metrics SET metric_type_id = ${metricTypeId}, value = ${value} WHERE id = ${id}")
+    int updateHealthMetricsById(HealthMetrics healthMetrics);
 }

@@ -1,6 +1,8 @@
 package com.dailyhealth.springhealthsystem.controller;
 
+import com.dailyhealth.springhealthsystem.model.HealthMetrics;
 import com.dailyhealth.springhealthsystem.model.User;
+import com.dailyhealth.springhealthsystem.service.HealthMetricsService;
 import com.dailyhealth.springhealthsystem.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,15 +10,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 public class LoginController {
     private final LoginService loginService;
+    private final HealthMetricsService healthMetricsService;
+
 
     @Autowired
-    public LoginController(LoginService loginService) {
+    public LoginController(LoginService loginService, HealthMetricsService healthMetricsService) {
         this.loginService = loginService;
+        this.healthMetricsService = healthMetricsService;
     }
 
     @GetMapping("/")
@@ -36,19 +44,22 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String processLogin(@RequestParam("username") String username,
-                               @RequestParam("password") String password,
-                               Model model,
-                               RedirectAttributes redirectAttributes) {
+    public ModelAndView processLogin(@RequestParam("username") String username, @RequestParam("password") String password, Model model, RedirectAttributes redirectAttributes) {
 
         User user = loginService.login(username, password);
         if (user != null) {
             redirectAttributes.addAttribute("username", user.getUsername());
-            return "redirect:/home";
+            List<HealthMetrics> healthMetricsList = healthMetricsService.getHealthMetricsByUserId(user.getId());
+
+            ModelAndView modelAndView = new ModelAndView("home");
+            modelAndView.addObject("username", user.getUsername());
+            modelAndView.addObject("list", healthMetricsList);
+
+            return modelAndView;
         } else {
-            // 登录失败，返回登录页面并显示错误消息
-            model.addAttribute("message", "Invalid username or password");
-            return "login";
+            ModelAndView modelAndView = new ModelAndView("login");
+            modelAndView.addObject("message", "Invalid username or password");
+            return modelAndView;
         }
     }
 }
