@@ -33,4 +33,13 @@ public class HealthMetricsController {
         model.addAttribute("message", "数据类型ID错误!");
         return "edit-metrics";
     }
+
+    @PostMapping("/delete/{id}")
+    public String deleteHealthMetrics(@PathVariable("id") int id, Model model) {
+        int output = healthMetricsService.deleteHealthMetrics(id);
+        if (output == 0) {
+            model.addAttribute("messgae", "删除失败");
+        }
+        return "redirect:/home";
+    }
 }

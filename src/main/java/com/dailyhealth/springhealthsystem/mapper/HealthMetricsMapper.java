@@ -26,4 +26,7 @@ public interface HealthMetricsMapper {
 
     @Update("UPDATE health_metrics SET metric_type_id = #{metricTypeId}, metric_type_name = #{metricTypeName}, value = #{value} WHERE id = #{id}")
     int updateHealthMetricsById(HealthMetrics healthMetrics);
+
+    @Delete("DELETE FROM health_metrics WHERE id = #{id}")
+    int deleteHealthMetrics(int id);
 }

@@ -53,4 +53,8 @@ public class HealthMetricsService {
 
         return healthMetricsMapper.updateHealthMetricsById(healthMetrics);
     }
+
+    public int deleteHealthMetrics(int id) {
+        return healthMetricsMapper.deleteHealthMetrics(id);
+    }
 }

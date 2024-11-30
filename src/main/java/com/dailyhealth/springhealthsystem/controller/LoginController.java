@@ -57,7 +57,7 @@ public class LoginController {
             session.setAttribute("id", user.getId());
             return "redirect:/home";
         } else {
-            model.addAttribute("message", "Invalid username or password");
+            model.addAttribute("message", "账户或者密码错误。");
             return "login";
         }
     }
