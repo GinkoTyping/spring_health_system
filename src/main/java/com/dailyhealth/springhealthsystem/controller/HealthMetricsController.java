@@ -1,6 +1,7 @@
 package com.dailyhealth.springhealthsystem.controller;
 
 import com.dailyhealth.springhealthsystem.service.HealthMetricsService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,5 +42,22 @@ public class HealthMetricsController {
             model.addAttribute("messgae", "删除失败");
         }
         return "redirect:/home";
+    }
+
+    @GetMapping("/add")
+    public String redirectToAdd() {
+        return "add-metrics";
+    }
+
+    @PostMapping("/add")
+    public String addHealthMetrics(HttpSession session, @RequestParam("metricTypeId") int metricTypeId, @RequestParam("value") Double value, Model model) {
+        int userId = (int) session.getAttribute("id");
+        int output = healthMetricsService.insertHealthMetrics(userId, metricTypeId, value);
+        if (output > 0) {
+            return "redirect:/home";
+        }
+
+        model.addAttribute("message", "新增健康数据失败。");
+        return "add-metrics";
     }
 }

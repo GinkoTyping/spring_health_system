@@ -6,38 +6,44 @@
 </head>
 <body>
 <h1>你好 <u>${username}</u>！ 欢迎来到天天安康！</h1>
-<table>
-    <thead>
-    <tr>
-        <th>数据ID</th>
-        <th>数据类型</th>
-        <th>数值</th>
-        <th>提交时间</th>
-        <th>操作</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach var="item" items="${list}">
+<div style="width:600px; margin: 0 auto">
+    <table>
+        <thead>
         <tr>
-            <td>${item.id}</td>
-            <td>${item.metricTypeName}</td>
-            <td>${item.value}</td>
-            <td>${item.recordedAt}</td>
-            <td style="width: 100px">
-                <form action="/health-metrics/update/${item.id}" method="get">
-                    <!-- 表单字段，如果需要的话 -->
-                    <button type="submit">编辑</button>
-                </form>
-                <form action="/health-metrics/delete/${item.id}" method="post">
-                    <!-- 表单字段，如果需要的话 -->
-                    <button type="submit">删除</button>
-                </form>
-            </td>
+            <th>数据ID</th>
+            <th>数据类型</th>
+            <th>数值</th>
+            <th>提交时间</th>
+            <th>操作</th>
         </tr>
-    </c:forEach>
-    </tbody>
-</table>
-<p>${message}</p>
+        </thead>
+        <tbody>
+        <c:forEach var="item" items="${list}">
+            <tr>
+                <td>${item.id}</td>
+                <td>${item.metricTypeName}</td>
+                <td>${item.value}</td>
+                <td>${item.recordedAt}</td>
+                <td style="width: 100px">
+                    <form action="/health-metrics/update/${item.id}" method="get">
+                        <!-- 表单字段，如果需要的话 -->
+                        <button type="submit">编辑</button>
+                    </form>
+                    <form action="/health-metrics/delete/${item.id}" method="post">
+                        <!-- 表单字段，如果需要的话 -->
+                        <button type="submit">删除</button>
+                    </form>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+    <form action="/health-metrics/add" method="get">
+        <!-- 表单字段，如果需要的话 -->
+        <button type="submit">新增</button>
+    </form>
+    <p>${message}</p>
+</div>
 
 </body>
 </html>
@@ -50,6 +56,7 @@
     table {
         width: 600px;
         margin: 0 auto;
+        margin-bottom: 10px;
         border-collapse: collapse;
     }
 
@@ -62,6 +69,7 @@
     th {
         background-color: #f2f2f2;
     }
+
     form {
         display: inline-block;
     }
