@@ -5,7 +5,6 @@ public class HealthMetricsType {
     private String name;
     private String description;
     private String unit;
-    private String dataType;
 
     public int getId() {
         return id;
@@ -37,13 +36,5 @@ public class HealthMetricsType {
 
     public void setUnit(String unit) {
         this.unit = unit;
-    }
-
-    public String getDataType() {
-        return dataType;
-    }
-
-    public void setDataType(String dataType) {
-        this.dataType = dataType;
     }
 }

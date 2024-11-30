@@ -57,7 +57,7 @@ public class HealthMetricsController {
             return "redirect:/home";
         }
 
-        model.addAttribute("message", "新增健康数据失败。");
+        model.addAttribute("metricsMessage", "新增健康数据失败。");
         return "add-metrics";
     }
 }

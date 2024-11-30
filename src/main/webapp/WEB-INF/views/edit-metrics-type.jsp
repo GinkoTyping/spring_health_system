@@ -5,13 +5,16 @@
     <title>天天安康</title>
 </head>
 <body>
-<h2>添加健康数据</h2>
-<form action="/health-metrics/add" method="post">
-    <label for="metricTypeId">数据类型ID:</label>
-    <input class="inputs" type="text" id="metricTypeId" name="metricTypeId" required>
+<h2>修改健康数据种类</h2>
+<form action="/health-metrics-type/update/${id}" method="post">
+    <label for="name">种类名称:</label>
+    <input class="inputs" type="text" id="name" name="name" value="${healthMetricsType.name}" required>
     <br>
-    <label for="value">数值:</label>
-    <input class="inputs" type="text" id="value" name="value" required>
+    <label for="description">种类简介:</label>
+    <input class="inputs" type="text" id="description" value="${healthMetricsType.description}" name="description" required>
+    <br>
+    <label for="unit">单位:</label>
+    <input class="inputs" type="text" id="unit" name="unit" value="${healthMetricsType.unit}" required>
     <br>
     <input id="loginBtn" type="submit">
     <p>${message}</p>

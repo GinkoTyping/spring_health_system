@@ -5,7 +5,7 @@
     <title>天天安康</title>
 </head>
 <body>
-<h2>修改数据</h2>
+<h2>修改健康数据</h2>
 <form action="/health-metrics/update/${id}" method="post">
     <label for="metricTypeId">数据类型ID:</label>
     <input class="inputs" type="text" id="metricTypeId" name="metricTypeId" required>

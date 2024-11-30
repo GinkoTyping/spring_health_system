@@ -1,8 +1,10 @@
 package com.dailyhealth.springhealthsystem.controller;
 
 import com.dailyhealth.springhealthsystem.model.HealthMetrics;
+import com.dailyhealth.springhealthsystem.model.HealthMetricsType;
 import com.dailyhealth.springhealthsystem.model.User;
 import com.dailyhealth.springhealthsystem.service.HealthMetricsService;
+import com.dailyhealth.springhealthsystem.service.HealthMetricsTypeService;
 import com.dailyhealth.springhealthsystem.service.LoginService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +22,14 @@ import java.util.List;
 public class LoginController {
     private final LoginService loginService;
     private final HealthMetricsService healthMetricsService;
+    private final HealthMetricsTypeService healthMetricsTypeService;
+
 
     @Autowired
-    public LoginController(LoginService loginService, HealthMetricsService healthMetricsService) {
+    public LoginController(LoginService loginService, HealthMetricsService healthMetricsService, HealthMetricsTypeService healthMetricsTypeService) {
         this.loginService = loginService;
         this.healthMetricsService = healthMetricsService;
+        this.healthMetricsTypeService = healthMetricsTypeService;
     }
 
     @GetMapping("/")
@@ -43,8 +48,11 @@ public class LoginController {
         String username = (String) session.getAttribute("username");
 
         List<HealthMetrics> healthMetricsList = healthMetricsService.getHealthMetricsByUserId(id);
+        List<HealthMetricsType> healthMetricsTypeList = healthMetricsTypeService.getHealthMetricsTypesList();
         model.addAttribute("username", username);
-        model.addAttribute("list", healthMetricsList);
+        model.addAttribute("metricsList", healthMetricsList);
+        model.addAttribute("metricsTypeList", healthMetricsTypeList);
+
 
         return "home";
     }
