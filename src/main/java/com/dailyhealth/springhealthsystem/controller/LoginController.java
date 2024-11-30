@@ -38,28 +38,25 @@ public class LoginController {
     }
 
     @GetMapping("/home")
-    public String home(@RequestParam(value = "username") String username, Model model) {
+    public String home(@RequestParam(value = "username") String username, @RequestParam(value = "id") int id, Model model) {
+        List<HealthMetrics> healthMetricsList = healthMetricsService.getHealthMetricsByUserId(id);
         model.addAttribute("username", username);
+        model.addAttribute("list", healthMetricsList);
+
         return "home";
     }
 
     @PostMapping("/login")
-    public ModelAndView processLogin(@RequestParam("username") String username, @RequestParam("password") String password, Model model, RedirectAttributes redirectAttributes) {
+    public String processLogin(@RequestParam("username") String username, @RequestParam("password") String password, Model model, RedirectAttributes redirectAttributes) {
 
         User user = loginService.login(username, password);
         if (user != null) {
             redirectAttributes.addAttribute("username", user.getUsername());
-            List<HealthMetrics> healthMetricsList = healthMetricsService.getHealthMetricsByUserId(user.getId());
-
-            ModelAndView modelAndView = new ModelAndView("home");
-            modelAndView.addObject("username", user.getUsername());
-            modelAndView.addObject("list", healthMetricsList);
-
-            return modelAndView;
+            redirectAttributes.addAttribute("id", user.getId());
+            return "redirect:/home";
         } else {
-            ModelAndView modelAndView = new ModelAndView("login");
-            modelAndView.addObject("message", "Invalid username or password");
-            return modelAndView;
+            model.addAttribute("message", "Invalid username or password");
+            return "login";
         }
     }
 }
