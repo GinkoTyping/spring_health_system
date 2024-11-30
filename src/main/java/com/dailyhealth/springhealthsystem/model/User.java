@@ -13,4 +13,7 @@ public class User {
     public boolean checkPassword(String input) {
         return this.password.equals(input);
     }
+    public String getUsername() {
+        return username;
+    }
 }

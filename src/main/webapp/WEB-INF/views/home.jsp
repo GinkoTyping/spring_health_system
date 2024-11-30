@@ -4,7 +4,12 @@
     <title>Home Page</title>
 </head>
 <body>
-<h1>Welcome to the Home Page</h1>
-<p>Message: ${message}</p>
+<h1>Hi ${username}! Welcome to the Daily Health!</h1>
 </body>
 </html>
+
+<style>
+    h1 {
+        text-align: center;
+    }
+</style>
