@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dailyhealth.springhealthsystem.mapper.HealthMetricsMapper">
+    <resultMap id="HealthMetricsResultMap" type="com.dailyhealth.springhealthsystem.model.HealthMetrics">
+        <result property="id" column="id" />
+        <result property="userId" column="user_id" />
+        <result property="metricTypeId" column="metric_type_id" />
+        <result property="metricTypeName" column="metric_type_name" />
+        <result property="value" column="value" />
+        <result property="recordedAt" column="recorded_at" />
+    </resultMap>
+    <insert id="insertHealthMetrics" parameterType="com.dailyhealth.springhealthsystem.model.HealthMetrics"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO health_metrics(user_id, metric_type_id, metric_type_name, value)
+        VALUES (#{userId}, #{metricTypeId}, #{metricTypeName}, #{value})
+    </insert>
+
+    <select id="getHealthMetricsByUserId" parameterType="int"
+            resultMap="HealthMetricsResultMap">
+        SELECT *
+        FROM health_metrics
+        WHERE user_id = #{userId}
+    </select>
+
+    <select id="getHealthMetricsList" resultMap="HealthMetricsResultMap">
+        SELECT *
+        FROM health_metrics
+    </select>
+
+    <update id="updateHealthMetricsById" parameterType="com.dailyhealth.springhealthsystem.model.HealthMetrics">
+        UPDATE health_metrics
+        SET metric_type_id   = #{metricTypeId},
+            metric_type_name = #{metricTypeName},
+            value            = #{value}
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateHealthMetricsByType" parameterType="com.dailyhealth.springhealthsystem.model.HealthMetricsType">
+        UPDATE health_metrics
+        SET metric_type_name = #{name}
+        WHERE metric_type_id = #{id}
+    </update>
+
+    <delete id="deleteHealthMetrics" parameterType="int">
+        DELETE
+        FROM health_metrics
+        WHERE id = #{id}
+    </delete>
+</mapper>

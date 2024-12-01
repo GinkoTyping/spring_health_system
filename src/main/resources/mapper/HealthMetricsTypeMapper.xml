@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dailyhealth.springhealthsystem.mapper.HealthMetricsTypeMapper">
+    <resultMap id="HealthMetricsTypeResultMap" type="com.dailyhealth.springhealthsystem.model.HealthMetricsType">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="description" column="description"/>
+        <result property="unit" column="unit"/>
+    </resultMap>
+    <insert id="insertHealthMetricsType" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO health_metrics_types(name, description, unit)
+        VALUES (#{name}, #{description}, #{unit})
+    </insert>
+    <select id="getHealthMetricsTypeById" resultMap="HealthMetricsTypeResultMap">
+        SELECT *
+        FROM health_metrics_types
+        WHERE id = #{id}
+    </select>
+    <select id="getHealthMetricsTypesList" resultMap="HealthMetricsTypeResultMap">
+        SELECT *
+        FROM health_metrics_types
+    </select>
+
+    <update id="updateHealthMetricsTypeById">
+        UPDATE health_metrics_types
+        SET name = #{name},
+            description = #{description},
+            unit = #{unit}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteHealthMetricsType" parameterType="int">
+        DELETE FROM health_metrics_types
+        WHERE id = #{id}
+    </delete>
+</mapper>
