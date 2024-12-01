@@ -72,6 +72,10 @@ public class HealthMetricsService {
         return healthMetricsMapper.getHealthMetricsById(id);
     }
 
+    public List<HealthMetrics> getHealthMetricsByUserName(String username) {
+        return healthMetricsMapper.getHealthMetricsByUserName(username);
+    }
+
     public String getAdviceBMI() {
         HealthMetrics height = healthMetricsMapper.getHealthMetricsByTypeId(1).get(0);
         HealthMetrics weight = healthMetricsMapper.getHealthMetricsByTypeId(2).get(0);
@@ -147,5 +151,9 @@ public class HealthMetricsService {
         }
 
         return metricsType;
+    }
+
+    public List<HealthMetrics> getHealthMetricsByTypeId(int id) {
+        return healthMetricsMapper.getHealthMetricsByTypeId(id);
     }
 }

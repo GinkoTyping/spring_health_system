@@ -7,6 +7,23 @@
 <body>
 <h1>你好 <u>${username}</u>！ 欢迎来到天天安康！</h1>
 
+<div class="search-type-container">
+    <form action="/health-metrics/search-type" method="post">
+        <div>
+            <label for="metricsTypeId">健康数据类型:</label>
+            <input class="inputs" type="text" id="metricsTypeId" name="metricsTypeId" required>
+        </div>
+        <button type="submit">按健康数据种类查看</button>
+    </form>
+    <form action="/health-metrics/search-username" method="post">
+        <div>
+            <label for="username">用户名称:</label>
+            <input class="inputs" type="text" id="username" name="username" value="${healthMetrics.value}" required>
+        </div>
+        <button type="submit">按用户名称查看</button>
+    </form>
+</div>
+
 <div style="width:600px; margin: 0 auto">
     <h3>一、 健康数据</h3>
     <table>
@@ -41,11 +58,9 @@
         </tbody>
     </table>
     <form action="/health-metrics/add" method="get">
-        <!-- 表单字段，如果需要的话 -->
         <button type="submit">新增健康数据</button>
     </form>
     <form action="/health-metrics/advice" method="post">
-        <!-- 表单字段，如果需要的话 -->
         <button type="submit">给我提点建议</button>
     </form>
     <p>${metricsMessage}</p>
@@ -72,11 +87,9 @@
                 <td>${item.unit}</td>
                 <td style="width: 100px">
                     <form action="/health-metrics-type/update/${item.id}" method="get">
-                        <!-- 表单字段，如果需要的话 -->
                         <button type="submit">编辑</button>
                     </form>
                     <form action="/health-metrics-type/delete/${item.id}" method="post">
-                        <!-- 表单字段，如果需要的话 -->
                         <button type="submit">删除</button>
                     </form>
                 </td>
@@ -85,7 +98,6 @@
         </tbody>
     </table>
     <form action="/health-metrics-type/add" method="get">
-        <!-- 表单字段，如果需要的话 -->
         <button type="submit">新增健康数据类型</button>
     </form>
     <p>${metricsTypeMessage}</p>
@@ -94,12 +106,34 @@
 </html>
 
 <style>
+    .search-type-container {
+        width: 600px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .search-type-container form {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 450px;
+    }
+    .search-type-container form label {
+        display: inline-block;
+        width: 110px;
+    }
+    .search-type-container form button {
+        margin-left: 8px;
+        width: 140px;
+    }
     p {
         color: red;
         font-weight: 600;
         text-decoration: underline;
         margin: 4px 0;
     }
+
     h1 {
         text-align: center;
     }

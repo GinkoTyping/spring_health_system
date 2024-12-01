@@ -4,11 +4,15 @@ import com.dailyhealth.springhealthsystem.model.HealthMetrics;
 import com.dailyhealth.springhealthsystem.service.HealthMetricsService;
 import com.dailyhealth.springhealthsystem.service.HealthMetricsTypeService;
 import jakarta.servlet.http.HttpSession;
+import org.eclipse.tags.shaded.org.apache.xpath.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/health-metrics")
@@ -77,5 +81,38 @@ public class HealthMetricsController {
         redirectAttributes.addAttribute("metricsMessage", metricsMessage);
 
         return "redirect:/home";
+    }
+
+    @GetMapping("/search-table")
+    public String redirectToSearchType(@RequestParam(value = "metricsTypeId", required = false) Integer metricsTypeId, @RequestParam(value = "title") String title, @RequestParam(value = "username", required = false) String username, Model model) {
+        List<HealthMetrics> healthMetricsList = new ArrayList<>();
+        if (metricsTypeId != null) {
+            healthMetricsList = healthMetricsService.getHealthMetricsByTypeId(metricsTypeId);
+        } else if (!username.isEmpty()) {
+            healthMetricsList = healthMetricsService.getHealthMetricsByUserName(username);
+        }
+
+        model.addAttribute("metricsList", healthMetricsList);
+        model.addAttribute("title", title);
+
+        return "search-table";
+    }
+
+    @PostMapping("/search-type")
+    public String redirectToSearch(@RequestParam("metricsTypeId") Integer metricsTypeId, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addAttribute("metricsTypeId", metricsTypeId);
+        redirectAttributes.addAttribute("username", null);
+        redirectAttributes.addAttribute("title", "按照健康数据类型查询");
+
+        return "redirect:/health-metrics/search-table";
+    }
+
+    @PostMapping("/search-username")
+    public String redirectToSearch(@RequestParam("username") String username, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addAttribute("username", username);
+        redirectAttributes.addAttribute("metricsTypeId", null);
+        redirectAttributes.addAttribute("title", "按照用户名称查询");
+
+        return "redirect:/health-metrics/search-table";
     }
 }
