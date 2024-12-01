@@ -6,6 +6,7 @@
 </head>
 <body>
 <h1>你好 <u>${username}</u>！ 欢迎来到天天安康！</h1>
+
 <div style="width:600px; margin: 0 auto">
     <h3>一、 健康数据</h3>
     <table>
@@ -41,7 +42,11 @@
     </table>
     <form action="/health-metrics/add" method="get">
         <!-- 表单字段，如果需要的话 -->
-        <button type="submit">新增</button>
+        <button type="submit">新增健康数据</button>
+    </form>
+    <form action="/health-metrics/advice" method="post">
+        <!-- 表单字段，如果需要的话 -->
+        <button type="submit">给我提点建议</button>
     </form>
     <p>${metricsMessage}</p>
 </div>
@@ -81,11 +86,10 @@
     </table>
     <form action="/health-metrics-type/add" method="get">
         <!-- 表单字段，如果需要的话 -->
-        <button type="submit">新增</button>
+        <button type="submit">新增健康数据类型</button>
     </form>
     <p>${metricsTypeMessage}</p>
 </div>
-
 </body>
 </html>
 

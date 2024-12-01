@@ -72,6 +72,33 @@ public class HealthMetricsService {
         return healthMetricsMapper.getHealthMetricsById(id);
     }
 
+    public String getAdviceBMI() {
+        HealthMetrics height = healthMetricsMapper.getHealthMetricsByTypeId(1).get(0);
+        HealthMetrics weight = healthMetricsMapper.getHealthMetricsByTypeId(2).get(0);
+        if (height != null && weight != null) {
+            double heightCm = height.getValue();
+            double weightKg = weight.getValue();
+
+            double bmi = weightKg / (Math.pow(heightCm / 100, 2));
+            bmi = Math.round(bmi * 10.0) / 10.0;
+
+            String advice;
+            if (bmi < 18.5) {
+                advice = "您的身材偏瘦，请多吃饭！";
+            } else if (bmi >= 18.5 && bmi < 24.9) {
+                advice = "您的身材正常，请继续保持！";
+            } else if (bmi >= 25 && bmi < 29.9) {
+                advice = "您的身材偏胖，请注意饮食或加强运动！";
+            } else {
+                advice = "您的身材肥胖，请不要暴饮暴食的同时，进行适度的锻炼！";
+            }
+
+            return "你的BMI值为: " + bmi + "，建议: " + advice;
+        } else {
+            return "无法获取身高或体重数据，无法计算BMI。";
+        }
+    }
+
     /**
      * 添加健康数据时，验证并返回指定 健康数据类型ID 的 健康数据类型。
      *

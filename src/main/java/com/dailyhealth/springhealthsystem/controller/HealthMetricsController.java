@@ -70,4 +70,12 @@ public class HealthMetricsController {
         redirectAttributes.addAttribute("message", "新增健康数据失败，请检查类型ID。");
         return "redirect:/health-metrics/add";
     }
+
+    @PostMapping("/advice")
+    public String getAdviceBIM(RedirectAttributes redirectAttributes) {
+        String metricsMessage = healthMetricsService.getAdviceBMI();
+        redirectAttributes.addAttribute("metricsMessage", metricsMessage);
+
+        return "redirect:/home";
+    }
 }

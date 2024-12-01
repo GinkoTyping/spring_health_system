@@ -9,7 +9,7 @@
 <form action="/health-metrics/update/${id}" method="post">
     <label for="metricTypeId">数据类型ID:</label>
     <input class="inputs" type="text" id="metricTypeId" name="metricTypeId"
-           required ${disableTypeInput ? "disabled" : ""}
+           required ${disableTypeInput ? "readonly" : ""}
            value="${healthMetrics.metricTypeId}" required>
     <br>
     <label for="value">数值:</label>
@@ -21,6 +21,9 @@
 </body>
 
 <style>
+    input[readonly] {
+        background-color: #c3c3c3;
+    }
     p {
         color: red;
         font-weight: 600;
