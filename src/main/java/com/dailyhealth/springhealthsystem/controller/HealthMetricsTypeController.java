@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/health-metrics-type")
@@ -36,10 +37,10 @@ public class HealthMetricsTypeController {
     }
 
     @PostMapping("/delete/{id}")
-    public String deleteHealthMetrics(@PathVariable("id") int id, Model model) {
+    public String deleteHealthMetricsType(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
         int output = healthMetricsTypeService.deleteHealthMetricsType(id);
         if (output == 0) {
-            model.addAttribute("metricsTypeMessage", "删除失败");
+            redirectAttributes.addAttribute("metricsTypeMessage", "删除数据类型失败，请检查该类型是否被引用。");
         }
         return "redirect:/home";
     }

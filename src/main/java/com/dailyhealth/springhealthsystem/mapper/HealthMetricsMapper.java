@@ -10,18 +10,17 @@ public interface HealthMetricsMapper {
 
     int insertHealthMetrics(HealthMetrics healthMetrics);
 
-
     List<HealthMetrics> getHealthMetricsByUserId(int userId);
-
 
     List<HealthMetrics> getHealthMetricsList();
 
+    HealthMetrics getHealthMetricsById(int it);
+
+    List<HealthMetrics> getHealthMetricsByTypeId(int it);
 
     int updateHealthMetricsById(HealthMetrics healthMetrics);
 
-
     void updateHealthMetricsByType(HealthMetricsType healthMetricsType);
-
 
     int deleteHealthMetrics(int id);
 }

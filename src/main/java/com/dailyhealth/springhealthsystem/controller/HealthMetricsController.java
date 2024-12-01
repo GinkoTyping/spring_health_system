@@ -1,5 +1,6 @@
 package com.dailyhealth.springhealthsystem.controller;
 
+import com.dailyhealth.springhealthsystem.model.HealthMetrics;
 import com.dailyhealth.springhealthsystem.service.HealthMetricsService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,10 @@ public class HealthMetricsController {
 
     @GetMapping("/update/{id}")
     public String redirectToEdit(@PathVariable(value = "id") int id, Model model) {
+        HealthMetrics healthMetrics = healthMetricsService.getHealthMetricsById(id);
         model.addAttribute("id", id);
+        model.addAttribute("healthMetrics", healthMetrics);
+
         return "edit-metrics";
     }
 

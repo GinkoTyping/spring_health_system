@@ -8,10 +8,10 @@
 <h2>修改健康数据</h2>
 <form action="/health-metrics/update/${id}" method="post">
     <label for="metricTypeId">数据类型ID:</label>
-    <input class="inputs" type="text" id="metricTypeId" name="metricTypeId" required>
+    <input class="inputs" type="text" id="metricTypeId" name="metricTypeId" value="${healthMetrics.metricTypeId}" required>
     <br>
     <label for="value">数值:</label>
-    <input class="inputs" type="text" id="value" name="value" required>
+    <input class="inputs" type="text" id="value" name="value" value="${healthMetrics.value}" required>
     <br>
     <input id="loginBtn" type="submit">
     <p>${message}</p>

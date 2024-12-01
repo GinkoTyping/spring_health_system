@@ -4,7 +4,6 @@ CREATE
 USE
     health_monitor;
 
--- 创建用户表
 CREATE TABLE users
 (
     id         INT AUTO_INCREMENT PRIMARY KEY,
@@ -14,16 +13,15 @@ CREATE TABLE users
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 创建健康数据种类表
 CREATE TABLE health_metrics_types
 (
     id          INT AUTO_INCREMENT PRIMARY KEY,
     name        VARCHAR(100) NOT NULL UNIQUE,
     description TEXT,
-    unit        VARCHAR(50)
+    unit        VARCHAR(50),
+    is_unique   TINYINT(1)   NOT NULL DEFAULT 0
 );
 
--- 创建健康数据记录表
 CREATE TABLE health_metrics
 (
     id               INT AUTO_INCREMENT PRIMARY KEY,

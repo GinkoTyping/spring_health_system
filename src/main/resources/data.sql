@@ -1,15 +1,13 @@
 INSERT INTO users (username, email, password)
 VALUES ('1', '1-email', '1'),
-       ('1', '1-email', '1');
+       ('2', '2-email', '1');
 
-INSERT INTO health_metrics_types (name, description, unit)
-VALUES ('步数', '总计步数', 'steps'),
-       ('心率', '每分钟心率', 'bpm'),
-       ('血压', '平均血压', 'mmHg');
+INSERT INTO health_metrics_types (name, description, unit, is_unique)
+VALUES ('身高', '您的身高', 'cm', 1),
+       ('体重', '您的体重', 'kg', 1),
+       ('步数', '您运动的总计步数', '步', 0);
 
 INSERT INTO health_metrics (user_id, metric_type_id, metric_type_name, value)
-VALUES (1, 1, '步数',3000);
-INSERT INTO health_metrics (user_id, metric_type_id, metric_type_name, value)
-VALUES (1, 2, '心率',70.0);
-INSERT INTO health_metrics (user_id, metric_type_id, metric_type_name, value)
-VALUES (1, 3, '血压',100.0);
+VALUES (1, 1, '身高', 177.0),
+       (1, 2, '体重', 70.0),
+       (1, 3, '步数', 5000.0)

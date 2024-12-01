@@ -2,6 +2,7 @@ package com.dailyhealth.springhealthsystem.service;
 
 import com.dailyhealth.springhealthsystem.mapper.HealthMetricsMapper;
 import com.dailyhealth.springhealthsystem.mapper.HealthMetricsTypeMapper;
+import com.dailyhealth.springhealthsystem.model.HealthMetrics;
 import com.dailyhealth.springhealthsystem.model.HealthMetricsType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,7 +50,11 @@ public class HealthMetricsTypeService {
     }
 
     public int deleteHealthMetricsType(int id) {
-        return healthMetricsTypeMapper.deleteHealthMetricsType(id);
+        List<HealthMetrics> healthMetricsList = healthMetricsMapper.getHealthMetricsByTypeId(id);
+        if (healthMetricsList.isEmpty()) {
+            return healthMetricsTypeMapper.deleteHealthMetricsType(id);
+        }
+        return 0;
     }
 
     public int insertHealthMetricsType(String name, String description, String unit) {

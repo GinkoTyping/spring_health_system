@@ -49,4 +49,16 @@
         FROM health_metrics
         WHERE id = #{id}
     </delete>
+
+    <select id="getHealthMetricsById" parameterType="int" resultMap="HealthMetricsResultMap">
+        SELECT *
+        FROM health_metrics
+        WHERE id = #{id}
+    </select>
+
+    <select id="getHealthMetricsByTypeId" parameterType="int" resultMap="HealthMetricsResultMap">
+        SELECT *
+        FROM health_metrics
+        WHERE metric_type_id = #{id}
+    </select>
 </mapper>

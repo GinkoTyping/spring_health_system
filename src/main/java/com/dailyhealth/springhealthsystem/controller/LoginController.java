@@ -43,7 +43,7 @@ public class LoginController {
     }
 
     @GetMapping("/home")
-    public String home(Model model, HttpSession session) {
+    public String home(@RequestParam(value = "metricsTypeMessage", required = false) String metricsTypeMessage, Model model, HttpSession session) {
         int id = (int) session.getAttribute("id");
         String username = (String) session.getAttribute("username");
 
@@ -52,7 +52,7 @@ public class LoginController {
         model.addAttribute("username", username);
         model.addAttribute("metricsList", healthMetricsList);
         model.addAttribute("metricsTypeList", healthMetricsTypeList);
-
+        model.addAttribute("metricsTypeMessage", metricsTypeMessage);
 
         return "home";
     }
