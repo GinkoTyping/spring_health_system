@@ -65,4 +65,9 @@ public class HealthMetricsTypeService {
 
         return healthMetricsTypeMapper.insertHealthMetricsType(healthMetricsType);
     }
+
+    public boolean isUniqueByMetricsTypeId(int typeId) {
+        HealthMetricsType healthMetricsType = healthMetricsTypeMapper.getHealthMetricsTypeById(typeId);
+        return healthMetricsType.getIsUnique() > 0;
+    }
 }

@@ -5,6 +5,15 @@ public class HealthMetricsType {
     private String name;
     private String description;
     private String unit;
+    private int isUnique;
+
+    public int getIsUnique() {
+        return isUnique;
+    }
+
+    public void setIsUnique(int isUnique) {
+        this.isUnique = isUnique;
+    }
 
     public int getId() {
         return id;

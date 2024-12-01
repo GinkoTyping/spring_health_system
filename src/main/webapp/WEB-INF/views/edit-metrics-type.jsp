@@ -7,11 +7,13 @@
 <body>
 <h2>修改健康数据种类</h2>
 <form action="/health-metrics-type/update/${id}" method="post">
-    <label for="name">种类名称:</label>
-    <input class="inputs" type="text" id="name" name="name" value="${healthMetricsType.name}" required>
+    <label for="description">种类名称:</label>
+    <input class="inputs" type="text" id="name" name="name" value="${healthMetricsType.name}"
+    >
     <br>
     <label for="description">种类简介:</label>
-    <input class="inputs" type="text" id="description" value="${healthMetricsType.description}" name="description" required>
+    <input class="inputs" type="text" id="description" value="${healthMetricsType.description}" name="description"
+           required>
     <br>
     <label for="unit">单位:</label>
     <input class="inputs" type="text" id="unit" name="unit" value="${healthMetricsType.unit}" required>

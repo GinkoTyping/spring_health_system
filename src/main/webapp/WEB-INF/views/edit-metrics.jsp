@@ -8,7 +8,9 @@
 <h2>修改健康数据</h2>
 <form action="/health-metrics/update/${id}" method="post">
     <label for="metricTypeId">数据类型ID:</label>
-    <input class="inputs" type="text" id="metricTypeId" name="metricTypeId" value="${healthMetrics.metricTypeId}" required>
+    <input class="inputs" type="text" id="metricTypeId" name="metricTypeId"
+           required ${disableTypeInput ? "disabled" : ""}
+           value="${healthMetrics.metricTypeId}" required>
     <br>
     <label for="value">数值:</label>
     <input class="inputs" type="text" id="value" name="value" value="${healthMetrics.value}" required>
@@ -19,6 +21,13 @@
 </body>
 
 <style>
+    p {
+        color: red;
+        font-weight: 600;
+        text-decoration: underline;
+        margin: 4px 0;
+    }
+
     h2, h3 {
         text-align: center;
     }

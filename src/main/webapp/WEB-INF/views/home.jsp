@@ -30,7 +30,7 @@
                         <!-- 表单字段，如果需要的话 -->
                         <button type="submit">编辑</button>
                     </form>
-                    <form action="/health-metrics/delete/${item.id}" method="post">
+                    <form action="/health-metrics/delete/${item.id}/${item.metricTypeId}" method="post">
                         <!-- 表单字段，如果需要的话 -->
                         <button type="submit">删除</button>
                     </form>
@@ -90,6 +90,12 @@
 </html>
 
 <style>
+    p {
+        color: red;
+        font-weight: 600;
+        text-decoration: underline;
+        margin: 4px 0;
+    }
     h1 {
         text-align: center;
     }
