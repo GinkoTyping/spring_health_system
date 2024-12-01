@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 public interface HealthMetricsTypeMapper {
-    @Insert("INSERT INTO health_metrics_types(name, description, unit, data_type) VALUES(#{name}, #{description}, #{unit}, #{dataType})")
+    @Insert("INSERT INTO health_metrics_types(name, description, unit) VALUES(#{name}, #{description}, #{unit})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insertHealthMetricsType(HealthMetricsType healthMetricsType);
 
@@ -26,4 +26,7 @@ public interface HealthMetricsTypeMapper {
 
     @Update("UPDATE health_metrics_types SET name = #{name}, description = #{description}, unit = #{unit} WHERE id = #{id}")
     int updateHealthMetricsTypeById(HealthMetricsType healthMetricsType);
+
+    @Delete("DELETE FROM health_metrics_types WHERE id = #{id}")
+    int deleteHealthMetricsType(int id);
 }

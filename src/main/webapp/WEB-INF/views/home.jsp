@@ -83,7 +83,7 @@
         <!-- 表单字段，如果需要的话 -->
         <button type="submit">新增</button>
     </form>
-    <p>${metricsMessage}</p>
+    <p>${metricsTypeMessage}</p>
 </div>
 
 </body>

@@ -35,4 +35,8 @@ public class HealthMetricsTypeService {
 
         return healthMetricsTypeMapper.updateHealthMetricsTypeById(healthMetricsType);
     }
+
+    public int deleteHealthMetricsType(int id) {
+        return healthMetricsTypeMapper.deleteHealthMetricsType(id);
+    }
 }
