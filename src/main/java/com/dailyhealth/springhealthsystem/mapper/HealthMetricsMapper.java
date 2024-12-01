@@ -12,8 +12,6 @@ public interface HealthMetricsMapper {
 
     List<HealthMetrics> getHealthMetricsByUserId(int userId);
 
-    List<HealthMetrics> getHealthMetricsByUserName(String username);
-
     List<HealthMetrics> getHealthMetricsList();
 
     HealthMetrics getHealthMetricsById(int it);

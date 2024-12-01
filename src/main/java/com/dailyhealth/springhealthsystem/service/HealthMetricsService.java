@@ -2,8 +2,10 @@ package com.dailyhealth.springhealthsystem.service;
 
 import com.dailyhealth.springhealthsystem.mapper.HealthMetricsMapper;
 import com.dailyhealth.springhealthsystem.mapper.HealthMetricsTypeMapper;
+import com.dailyhealth.springhealthsystem.mapper.UserMapper;
 import com.dailyhealth.springhealthsystem.model.HealthMetrics;
 import com.dailyhealth.springhealthsystem.model.HealthMetricsType;
+import com.dailyhealth.springhealthsystem.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +17,14 @@ public class HealthMetricsService {
     private final HealthMetricsMapper healthMetricsMapper;
     private final HealthMetricsTypeMapper healthMetricsTypeMapper;
     private final HealthMetricsTypeService healthMetricsTypeService;
+    private final UserMapper userMapper;
 
     @Autowired
-    public HealthMetricsService(HealthMetricsMapper healthMetricsMapper, HealthMetricsTypeMapper healthMetricsTypeMapper, HealthMetricsTypeService healthMetricsTypeService) {
+    public HealthMetricsService(HealthMetricsMapper healthMetricsMapper, HealthMetricsTypeMapper healthMetricsTypeMapper, HealthMetricsTypeService healthMetricsTypeService, UserMapper userMapper) {
         this.healthMetricsMapper = healthMetricsMapper;
         this.healthMetricsTypeMapper = healthMetricsTypeMapper;
         this.healthMetricsTypeService = healthMetricsTypeService;
+        this.userMapper = userMapper;
     }
 
     public List<HealthMetrics> getHealthMetricsList() {
@@ -73,7 +77,8 @@ public class HealthMetricsService {
     }
 
     public List<HealthMetrics> getHealthMetricsByUserName(String username) {
-        return healthMetricsMapper.getHealthMetricsByUserName(username);
+        User user = userMapper.getUserByUsername(username);
+        return healthMetricsMapper.getHealthMetricsByUserId(user.getId());
     }
 
     public String getAdviceBMI() {

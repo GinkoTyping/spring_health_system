@@ -61,10 +61,4 @@
         FROM health_metrics
         WHERE metric_type_id = #{id}
     </select>
-
-    <select id="getHealthMetricsByUserName" parameterType="String" resultMap="HealthMetricsResultMap">
-        SELECT *
-        FROM health_metrics
-        WHERE id = #{username}
-    </select>
 </mapper>
