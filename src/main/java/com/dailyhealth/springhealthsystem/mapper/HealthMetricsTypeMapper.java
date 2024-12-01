@@ -9,7 +9,7 @@ import java.util.List;
 public interface HealthMetricsTypeMapper {
     @Insert("INSERT INTO health_metrics_types(name, description, unit) VALUES(#{name}, #{description}, #{unit})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
-    void insertHealthMetricsType(HealthMetricsType healthMetricsType);
+    int insertHealthMetricsType(HealthMetricsType healthMetricsType);
 
     @Select("SELECT * FROM health_metrics_types WHERE id = #{id}")
     HealthMetricsType getHealthMetricsTypeById(int id);

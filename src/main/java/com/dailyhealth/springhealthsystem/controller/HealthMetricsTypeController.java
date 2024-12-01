@@ -43,4 +43,20 @@ public class HealthMetricsTypeController {
         }
         return "redirect:/home";
     }
+
+    @GetMapping("/add")
+    public String redirectToAdd() {
+        return "add-metrics-type";
+    }
+
+    @PostMapping("/add")
+    public String addHealthMetrics(@RequestParam("name") String name, @RequestParam("description") String description, @RequestParam("unit") String unit, Model model) {
+        int output = healthMetricsTypeService.insertHealthMetricsType(name, description, unit);
+        if (output > 0) {
+            return "redirect:/home";
+        }
+
+        model.addAttribute("metricsMessage", "新增健康类型数据失败。");
+        return "add-metrics-type";
+    }
 }

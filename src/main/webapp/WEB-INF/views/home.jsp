@@ -79,7 +79,7 @@
         </c:forEach>
         </tbody>
     </table>
-    <form action="/health-metrics/add" method="get">
+    <form action="/health-metrics-type/add" method="get">
         <!-- 表单字段，如果需要的话 -->
         <button type="submit">新增</button>
     </form>

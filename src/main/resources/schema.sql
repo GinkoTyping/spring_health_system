@@ -18,10 +18,9 @@ CREATE TABLE users
 CREATE TABLE health_metrics_types
 (
     id          INT AUTO_INCREMENT PRIMARY KEY,
-    name        VARCHAR(100)                        NOT NULL,
+    name        VARCHAR(100) NOT NULL UNIQUE,
     description TEXT,
-    unit        VARCHAR(50),
-    data_type   ENUM ('INTEGER', 'FLOAT', 'STRING') NOT NULL
+    unit        VARCHAR(50)
 );
 
 -- 创建健康数据记录表

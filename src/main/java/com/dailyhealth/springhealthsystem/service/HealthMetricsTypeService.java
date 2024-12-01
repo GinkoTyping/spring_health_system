@@ -39,4 +39,13 @@ public class HealthMetricsTypeService {
     public int deleteHealthMetricsType(int id) {
         return healthMetricsTypeMapper.deleteHealthMetricsType(id);
     }
+
+    public int insertHealthMetricsType(String name, String description, String unit) {
+        HealthMetricsType healthMetricsType = new HealthMetricsType();
+        healthMetricsType.setName(name);
+        healthMetricsType.setDescription(description);
+        healthMetricsType.setUnit(unit);
+
+        return healthMetricsTypeMapper.insertHealthMetricsType(healthMetricsType);
+    }
 }
