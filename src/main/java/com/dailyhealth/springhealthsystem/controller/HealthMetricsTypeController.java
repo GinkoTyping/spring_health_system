@@ -31,8 +31,8 @@ public class HealthMetricsTypeController {
         if (output > 0) {
             return "redirect:/home";
         }
-        model.addAttribute("metricsTypeMessage", "数据类型ID错误!");
-        return "edit-metrics";
+        model.addAttribute("message", "更新健康数据类型失败!");
+        return "edit-metrics-type";
     }
 
     @PostMapping("/delete/{id}")

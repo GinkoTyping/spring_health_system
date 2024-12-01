@@ -1,6 +1,7 @@
 package com.dailyhealth.springhealthsystem.mapper;
 
 import com.dailyhealth.springhealthsystem.model.HealthMetrics;
+import com.dailyhealth.springhealthsystem.model.HealthMetricsType;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -26,6 +27,9 @@ public interface HealthMetricsMapper {
 
     @Update("UPDATE health_metrics SET metric_type_id = #{metricTypeId}, metric_type_name = #{metricTypeName}, value = #{value} WHERE id = #{id}")
     int updateHealthMetricsById(HealthMetrics healthMetrics);
+
+    @Update("UPDATE health_metrics SET metric_type_name = #{name} WHERE metric_type_id = #{id}")
+    void updateHealthMetricsByType(HealthMetricsType healthMetricsType);
 
     @Delete("DELETE FROM health_metrics WHERE id = #{id}")
     int deleteHealthMetrics(int id);
